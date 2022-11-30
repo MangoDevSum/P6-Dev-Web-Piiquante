@@ -7,7 +7,7 @@ const PORT_MONGODB = 27017;
 const app = express()
 
 app.get('/', async (req, res) => {
-  await mongoose.connect(`mongodb://localhost:${PORT_MONGODB}/test`);
+  // await mongoose.connect(`mongodb://localhost:${PORT_MONGODB}/test`);
   res.send('Hello World!');
 })
 
