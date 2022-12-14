@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 // Création du modèle prédéfini d'une sauce pour l'ajout d'une nouvelle à la DB
-const sauce = mongoose.Schema({
+const sauceSchema = mongoose.Schema({
   userId: { type: String, required: true },
   name: { type: String, required: true },
   manufacturer: { type: String, required: true },
@@ -15,4 +15,4 @@ const sauce = mongoose.Schema({
   usersDisliked: { type: [String], required: true },
 });
 
-module.exports = mongoose.model("Sauce", sauce);
+module.exports = mongoose.model("Sauce", sauceSchema);
