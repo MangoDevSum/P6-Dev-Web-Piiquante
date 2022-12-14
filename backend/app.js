@@ -11,14 +11,15 @@ async function main() {
 
   const app = express();
 
-  // app.use((req, res) = > {
-  //   res.json({ message: 'Votre requete a bien ete reçue'});
-  // });
+
   app.use(express.json());
   app.use('/api/auth', userRoutes);
 
   const PORT_BACKEND = 3000;
   console.log(`Listening at http://localhost:${PORT_BACKEND}/`);
+
+  // FIXME: fournir cette valeur proprement quand on lance le serveur.
+  process.env.RANDOM_TOKEN_SECRET ||= "mon mot de passe top secret"
   app.listen(PORT_BACKEND);
 
   module.exports = app;
