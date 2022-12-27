@@ -3,7 +3,7 @@ const router = express.Router();
 
 const sauceCtrl = require("../controllers/sauce");
 const check_auth = require("../middleware/auth");
-const sauvegarder_image_envoyee = require("../middleware/multer");
+const sauvegarder_image_envoyee = require("../middleware/upload");
 
 router.get("/:id", check_auth, sauceCtrl.obtenirSauce);
 router.get("/", check_auth, sauceCtrl.listerToutesLesSauces);
