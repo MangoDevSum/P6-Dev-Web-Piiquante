@@ -11,7 +11,7 @@ async function check_auth(req, res, next) {
     }
   } catch(_erreur) {
     return res.status(401).json({
-      error: new Error("Requête invalide!"),
+      error: "Requête invalide!",
     });
   }
   next();

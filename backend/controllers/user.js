@@ -3,7 +3,6 @@ const bcrypt = require("bcrypt");
 const User = require('../models/user.js');
 
 const jsonwebtoken = require("jsonwebtoken");
-// faire la manip pour le placer dans package.json ?
 
 async function signup(req, res, next) {
   // console.log(req.body);

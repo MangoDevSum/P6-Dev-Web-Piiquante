@@ -29,8 +29,8 @@ async function main() {
     );
     next();
   });
-
   app.use(express.json());
+
   // Authentification
   app.use('/api/auth', userRoutes);
   // Intéraction avec les sauces
@@ -44,8 +44,6 @@ async function main() {
   // FIXME: fournir cette valeur proprement quand on lance le serveur.
   process.env.RANDOM_TOKEN_SECRET ||= "mon mot de passe top secret"
   app.listen(PORT_BACKEND);
-
-  module.exports = app;
 }
 
 main()
