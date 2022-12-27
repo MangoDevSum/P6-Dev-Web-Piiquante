@@ -15,14 +15,17 @@ async function main() {
 
   // Configurer le CORS pour autoriser toutes les requêtes
   app.use((req, res, next) => {
-    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader(
+      "Access-Control-Allow-Origin",
+      "*",
+    );
     res.setHeader(
       "Access-Control-Allow-Headers",
-      "Origin, X-Requested-With, Content, Accept, Content-Type, Authorization"
+      "Origin, X-Requested-With, Content, Accept, Content-Type, Authorization",
     );
     res.setHeader(
       "Access-Control-Allow-Methods",
-      "GET, POST, PUT, DELETE, PATCH, OPTIONS"
+      "GET, POST, PUT, DELETE, PATCH, OPTIONS",
     );
     next();
   });
@@ -33,7 +36,7 @@ async function main() {
   // Intéraction avec les sauces
   app.use("/api/sauces", sauceRoutes);
   // Accès aux images uploadées
-  app.use("/images", express.static(path.join(__dirname, "images")));
+  app.use("/images", express.static(path.join(__dirname, "images/")));
 
   const PORT_BACKEND = 3000;
   console.log(`Listening at http://localhost:${PORT_BACKEND}/`);
