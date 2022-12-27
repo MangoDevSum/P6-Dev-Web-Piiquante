@@ -84,8 +84,8 @@ async function creerSauce(req, res, next) {
 
 // Modification d'une sauce existante
 async function majSauce(req, res, next) {
-  const sauce = await trouverSauce(req, res, { dautrui: false });
-  if (sauce == null) {
+  const sauceInitiale = await trouverSauce(req, res, { dautrui: false });
+  if (sauceInitiale == null) {
     return;
   }
   const sauceId = req.params.id;
@@ -94,9 +94,8 @@ async function majSauce(req, res, next) {
       ...req.body,
       _id: sauceId,
       imageUrl: `${req.protocol}://${req.get("host")}/images/${req.file.filename}`,
-      likes: 0,
-      dislikes: 0,
     });
+    await supprimerImage(sauceInitiale)
   } catch(erreur) {
     return res.status(400).json({
       error: erreur,
@@ -122,6 +121,13 @@ async function supprimerSauce(req, res, next) {
     });
   }
   // On ne supprime l'image que quand la suppression de l'entrée dans la bdd a eu lieu.
+  await supprimerImage(sauce);
+  return res.status(200).json({
+    message: "Supprimé",
+  });
+}
+
+async function supprimerImage(sauce) {
   try {
     const filename = sauce.imageUrl.split("images/")[1];
     await fs.promises.unlink(`images/${filename}`);
@@ -130,9 +136,6 @@ async function supprimerSauce(req, res, next) {
     // il s'agirait d'une erreur interne qu'il n'est pas nécessaire de montrer à l'utilisateur.
     console.error(_erreur);
   }
-  return res.status(200).json({
-    message: "Supprimé",
-  });
 }
 
 async function likeOuPas(req, res, next) {

@@ -28,7 +28,7 @@ const sauvegarder_image_envoyee = multer({
       }
       const extension = EXTENSIONS[file.mimetype];
       // Puis on ajoute l'extension appropriée au nom initial, si besoin.
-      if (name.endsWith(extension) == false) {
+      if (name.toLowerCase().endsWith(extension) == false) {
         name += extension;
       }
       // Enfin, on rajoute qqch d'unique; comme la date pour éviter des collisions.
